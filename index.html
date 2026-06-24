@@ -37,10 +37,13 @@
                     <button onclick="goToPage2('18')" class="p-4 bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-600 font-bold rounded-2xl border border-slate-200 hover:border-blue-300 transition-all col-span-2 text-center">ม.6/18</button>
                 </div>
                 
-                <!-- ปุ่มดูผลโหวตรวมทุกห้องที่ครูขอเพิ่ม -->
-                <div class="pt-2">
-                    <button onclick="goToAllResultsPage()" class="w-full py-3.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold rounded-2xl border border-indigo-200 transition-all text-center text-sm flex items-center justify-center gap-2 shadow-sm">
-                        📊 ดูผลโหวตรวมทุกห้อง (ใครโหวตใครบ้าง)
+                <!-- ปุ่มดูผลโหวตต่างๆ ที่หน้าแรก -->
+                <div class="pt-2 space-y-2">
+                    <button onclick="goToSummaryPage()" class="w-full py-3.5 bg-amber-50 hover:bg-amber-100 text-amber-700 font-bold rounded-2xl border border-amber-200 transition-all text-center text-sm flex items-center justify-center gap-2 shadow-sm">
+                        🏆 ดูสรุปคะแนนสูงสุด เรียงตามห้อง
+                    </button>
+                    <button onclick="goToAllResultsPage()" class="w-full py-2.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-600 font-semibold rounded-xl border border-indigo-100 transition-all text-center text-xs flex items-center justify-center gap-2">
+                        📋 ดูประวัติการโหวตละเอียด (ใครโหวตใครบ้าง)
                     </button>
                 </div>
             </div>
@@ -68,7 +71,7 @@
                 </button>
             </div>
 
-            <!-- ================= หน้าที่ 3: สรุปผลคะแนนสรุปเรียลไทม์ ================= -->
+            <!-- ================= หน้าที่ 3: สรุปผลคะแนนสรุปเรียลไทม์รายห้อง ================= -->
             <div id="page-3" class="hidden space-y-5">
                 <div class="text-center">
                     <h3 class="text-lg font-bold text-slate-800">📊 ผลโหวตปัจจุบัน ม.6/<span id="result-room"></span></h3>
@@ -88,7 +91,7 @@
                 </div>
             </div>
 
-            <!-- ================= หน้าที่ 4: (เพิ่มใหม่) แสดงผลโหวตรวมทุกห้องอย่างละเอียด ================= -->
+            <!-- ================= หน้าที่ 4: แสดงผลโหวตรวมทุกห้องอย่างละเอียด ================= -->
             <div id="page-4" class="hidden space-y-4">
                 <div class="text-center">
                     <h3 class="text-lg font-bold text-slate-800">📋 ประวัติการโหวตละเอียด ทุกห้อง</h3>
@@ -97,6 +100,23 @@
 
                 <!-- พื้นที่แสดงลิสต์รายชื่อว่าใครโหวตใคร -->
                 <div id="all-results-container" class="space-y-4 max-h-[320px] overflow-y-auto pr-1 text-sm text-slate-700"></div>
+
+                <div class="pt-2 border-t border-slate-100">
+                    <button onclick="goToPage1()" class="w-full py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl text-xs transition-all text-center">
+                        ↩️ กลับหน้าหลัก
+                    </button>
+                </div>
+            </div>
+
+            <!-- ================= หน้าที่ 5: (เพิ่มใหม่) สรุปผลคะแนนสูงสุดเรียงตามห้อง ================= -->
+            <div id="page-5" class="hidden space-y-4">
+                <div class="text-center">
+                    <h3 class="text-lg font-bold text-slate-800">🏆 สรุปคะแนนโหวตสูงสุด เรียงตามห้อง</h3>
+                    <p class="text-xs text-slate-400 mt-0.5">อันดับคะแนนของนักเรียนแต่ละห้องเรียน</p>
+                </div>
+
+                <!-- พื้นที่แสดงสรุปอันดับแต่ละห้อง -->
+                <div id="room-summary-container" class="space-y-4 max-h-[320px] overflow-y-auto pr-1 text-sm text-slate-700"></div>
 
                 <div class="pt-2 border-t border-slate-100">
                     <button onclick="goToPage1()" class="w-full py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl text-xs transition-all text-center">
@@ -126,6 +146,7 @@
             document.getElementById('page-2').classList.add('hidden');
             document.getElementById('page-3').classList.add('hidden');
             document.getElementById('page-4').classList.add('hidden');
+            document.getElementById('page-5').classList.add('hidden');
             document.getElementById(`page-${pageNumber}`).classList.remove('hidden');
         }
 
@@ -141,14 +162,13 @@
             showPage(2);
         }
 
-        // หน้าต่างแสดงรายละเอียดผลรวมทั้งหมดว่าใครโหวตใครบ้าง
+        // หน้าต่างแสดงรายละเอียดผลรวมทั้งหมดว่าใครโหวตใครบ้าง (Page 4)
         function goToAllResultsPage() {
             const container = document.getElementById('all-results-container');
             container.innerHTML = ""; // เคลียร์ข้อมูลเก่า
 
             let hasAnyData = false;
 
-            // วนลูปเช็คข้อมูลทีละห้อง ม.6/12 - ม.6/18
             for (let room = 12; room <= 18; room++) {
                 const roomKey = room.toString();
                 const votersData = mockDatabase[roomKey];
@@ -157,12 +177,10 @@
                 if (votersList.length > 0) {
                     hasAnyData = true;
                     
-                    // สร้างหัวข้อห้องเรียน
                     let roomSection = document.createElement('div');
                     roomSection.className = "bg-slate-50 p-3 rounded-xl border border-slate-100 space-y-1.5";
                     roomSection.innerHTML = `<h4 class="font-bold text-blue-600 border-b border-slate-200 pb-1">🏫 ห้อง ม.6/${roomKey}</h4>`;
                     
-                    // วนลูปดึงข้อมูลว่าเลขที่ไหนโหวตใครในห้องนั้น
                     votersList.forEach(voter => {
                         const candidate = votersData[voter];
                         roomSection.innerHTML += `
@@ -185,7 +203,63 @@
             showPage(4);
         }
 
-        // ฟังก์ชันประมวลผลการกดโหวต
+        // ฟังก์ชันคำนวณและแสดงผลสรุปคะแนนโหวตเรียงตามห้อง (Page 5 - เพิ่มใหม่)
+        function goToSummaryPage() {
+            const container = document.getElementById('room-summary-container');
+            container.innerHTML = ""; // เคลียร์ข้อมูลเก่า
+
+            for (let room = 12; room <= 18; room++) {
+                const roomKey = room.toString();
+                const roomData = mockDatabase[roomKey];
+                
+                // ประมวลผลนับคะแนนโหวตของห้องนั้นๆ
+                let scoreCount = {};
+                Object.values(roomData).forEach(candidate => {
+                    scoreCount[candidate] = (scoreCount[candidate] || 0) + 1;
+                });
+
+                // แปลงเป็น Array แล้วเรียงลำดับคะแนนจากมากไปน้อย
+                let sortedScores = Object.keys(scoreCount).map(key => {
+                    return { candidateNo: key, votes: scoreCount[key] };
+                }).sort((a, b) => b.votes - a.votes);
+
+                let roomSection = document.createElement('div');
+                roomSection.className = "bg-slate-50 p-3 rounded-xl border border-slate-100 space-y-2";
+                
+                let htmlContent = `
+                    <div class="flex justify-between items-center border-b border-slate-200 pb-1.5">
+                        <h4 class="font-bold text-amber-600">🏫 ห้อง ม.6/${roomKey}</h4>
+                        <span class="text-[11px] bg-slate-200/70 text-slate-600 px-2 py-0.5 rounded-md">โหวตแล้ว ${Object.keys(roomData).length} คน</span>
+                    </div>
+                `;
+
+                if (sortedScores.length === 0) {
+                    htmlContent += `<p class="text-xs text-slate-400 italic py-1">📥 ยังไม่มีการลงคะแนนในห้องนี้</p>`;
+                } else {
+                    // ดึงอันดับมาแสดงผลพร้อมติดเหรียญรางวัล
+                    sortedScores.forEach((item, index) => {
+                        let medal = "🎖️";
+                        if(index === 0) medal = "🥇";
+                        if(index === 1) medal = "🥈";
+                        if(index === 2) medal = "🥉";
+
+                        htmlContent += `
+                            <div class="flex justify-between items-center text-xs py-0.5">
+                                <span class="text-slate-700">${medal} อันดับ ${index + 1}: <strong class="text-slate-900">เลขที่ ${item.candidateNo}</strong></span>
+                                <span class="font-bold text-amber-700 bg-amber-100/80 px-2 py-0.5 rounded-full text-[11px]">${item.votes} โหวต</span>
+                            </div>
+                        `;
+                    });
+                }
+
+                roomSection.innerHTML = htmlContent;
+                container.appendChild(roomSection);
+            }
+
+            showPage(5);
+        }
+
+        // ฟังก์ชันประมวลผลการกดโหวต (Page 2)
         function submitVote() {
             const voter = document.getElementById('voter-no').value.trim();
             const candidate = document.getElementById('candidate-no').value.trim();
@@ -216,7 +290,7 @@
             showPage(3);
         }
 
-        // ฟังก์ชันคำนวณและวาดกราฟ Leaderboard
+        // ฟังก์ชันคำนวณและวาดกราฟ Leaderboard รายห้อง (Page 3)
         function renderLeaderboard() {
             document.getElementById('result-room').innerText = currentRoom;
             const roomData = mockDatabase[currentRoom];
