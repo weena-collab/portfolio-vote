@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบโหวตปก Portfolio ม.6 - ครูวีณา</title>
+    <!-- ใช้ Tailwind CSS สำหรับหน้าตาที่สวยงามและรองรับมือถือ -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Sarabun', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen flex items-center justify-center p-4">
+
+    <div class="max-w-md w-full bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
+        
+        <!-- แถบสีหัวข้อด้านบน -->
+        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 p-6 text-white text-center">
+            <span class="bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Activity</span>
+            <h1 class="text-2xl font-bold mt-2">🗳️ โหวตปก Portfolio ม.6</h1>
+            <p class="text-blue-100 text-xs mt-1">ห้อง ม.6/12 - ม.6/18 | คุณครูวีณา</p>
+        </div>
+
+        <div class="p-6">
+            
+            <!-- ================= หน้าที่ 1: เลือกห้องเรียน ================= -->
+            <div id="page-1" class="space-y-4">
+                <label class="block text-slate-700 font-semibold text-center text-base mb-2">กรุณาเลือกห้องเรียนของคุณเพื่อโหวต</label>
+                <div class="grid grid-cols-2 gap-3">
+                    <button onclick="goToPage2('12')" class="p-4 bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-600 font-bold rounded-2xl border border-slate-200 hover:border-blue-300 transition-all text-center">ม.6/12</button>
+                    <button onclick="goToPage2('13')" class="p-4 bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-600 font-bold rounded-2xl border border-slate-200 hover:border-blue-300 transition-all text-center">ม.6/13</button>
+                    <button onclick="goToPage2('14')" class="p-4 bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-600 font-bold rounded-2xl border border-slate-200 hover:border-blue-300 transition-all text-center">ม.6/14</button>
+                    <button onclick="goToPage2('15')" class="p-4 bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-600 font-bold rounded-2xl border border-slate-200 hover:border-blue-300 transition-all text-center">ม.6/15</button>
+                    <button onclick="goToPage2('16')" class="p-4 bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-600 font-bold rounded-2xl border border-slate-200 hover:border-blue-300 transition-all text-center">ม.6/16</button>
+                    <button onclick="goToPage2('17')" class="p-4 bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-600 font-bold rounded-2xl border border-slate-200 hover:border-blue-300 transition-all text-center">ม.6/17</button>
+                    <button onclick="goToPage2('18')" class="p-4 bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-600 font-bold rounded-2xl border border-slate-200 hover:border-blue-300 transition-all col-span-2 text-center">ม.6/18</button>
+                </div>
+            </div>
+
+            <!-- ================= หน้าที่ 2: ฟอร์มกรอกเลขที่โหวต ================= -->
+            <div id="page-2" class="hidden space-y-5">
+                <div class="flex justify-between items-center bg-blue-50/70 px-4 py-3 rounded-2xl border border-blue-100">
+                    <span class="text-blue-700 font-bold text-sm">📍 กำลังโหวตให้ห้อง: ม.6/<span id="selected-room"></span></span>
+                    <button onclick="goToPage1()" class="text-xs text-slate-400 hover:text-blue-600 transition-colors">เปลี่ยนห้อง</button>
+                </div>
+
+                <div class="space-y-1">
+                    <label class="block text-slate-700 text-sm font-semibold">1. เลขที่ของคุณ (ผู้โหวต)</label>
+                    <input type="number" id="voter-no" min="1" max="50" placeholder="ระบุเลขที่ของคุณ เช่น 5" class="w-full p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none transition-all text-sm">
+                    <p class="text-[11px] text-slate-400 pt-0.5">* ข้อมูลนี้จะถูกเก็บเป็นความลับเพื่อป้องกันการโหวตซ้ำเท่านั้น</p>
+                </div>
+
+                <div class="space-y-1">
+                    <label class="block text-slate-700 text-sm font-semibold">2. เลขที่ของเพื่อนที่คุณต้องการโหวตให้</label>
+                    <input type="number" id="candidate-no" min="1" max="50" placeholder="ระบุเลขที่ของเพื่อน เช่น 21" class="w-full p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none transition-all text-sm">
+                </div>
+
+                <button onclick="submitVote()" class="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-100 active:scale-[0.99]">
+                    ส่งผลโหวต & ดูคะแนนสรุป 🚀
+                </button>
+            </div>
+
+            <!-- ================= หน้าที่ 3: สรุปผลคะแนนสรุปเรียลไทม์ ================= -->
+            <div id="page-3" class="hidden space-y-5">
+                <div class="text-center">
+                    <h3 class="text-lg font-bold text-slate-800">📊 ผลโหวตปัจจุบัน ม.6/<span id="result-room"></span></h3>
+                    <p class="text-xs text-slate-400 mt-0.5">คะแนนอัปเดตเรียลไทม์จากระบบ</p>
+                </div>
+
+                <!-- พื้นที่แสดงกราฟแท่งผลคะแนน -->
+                <div id="leaderboard-container" class="space-y-3 max-h-[280px] overflow-y-auto pr-1">
+                    <!-- โค้ด JavaScript จะมาสร้างแถบคะแนนตรงนี้ -->
+                </div>
+
+                <div class="pt-2 border-t border-slate-100 flex gap-2">
+                    <button onclick="goToPage1()" class="w-1/2 py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl text-xs transition-all text-center">
+                        ↩️ กลับหน้าแรก
+                    </button>
+                    <button onclick="renderLeaderboard()" class="w-1/2 py-3 bg-blue-50 hover:bg-blue-100 text-blue-600 font-bold rounded-xl text-xs transition-all text-center">
+                        🔄 อัปเดตคะแนนสด
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ส่วนควบคุมระบบทำงาน (Logic) -->
+    <script>
+        let currentRoom = "";
+        
+        // จำลองฐานข้อมูลเก็บคะแนนไว้ในเครื่อง (เมื่อรีเฟรชหน้าเว็บ ข้อมูลจำลองจะรีเซ็ตใหม่)
+        // โครงสร้างข้อมูล: { ห้อง: { เลขที่ผู้โหวต: เลขที่ผู้ถูกโหวต } }
+        let mockDatabase = {
+            "12": { "1": 15, "2": 21, "3": 15, "4": 3, "7": 15, "8": 21, "9": 42 },
+            "13": { "1": 5, "2": 5, "3": 12 },
+            "14": {}, "15": {}, "16": {}, "17": {}, "18": {}
+        };
+
+        // ฟังก์ชันสลับหน้าจอ
+        function showPage(pageNumber) {
+            document.getElementById('page-1').classList.add('hidden');
+            document.getElementById('page-2').classList.add('hidden');
+            document.getElementById('page-3').classList.add('hidden');
+            document.getElementById(`page-3`).classList.add('hidden');
+            document.getElementById(`page-${pageNumber}`).classList.remove('hidden');
+        }
+
+        function goToPage1() {
+            showPage(1);
+        }
+
+        function goToPage2(room) {
+            currentRoom = room;
+            document.getElementById('selected-room').innerText = room;
+            document.getElementById('voter-no').value = "";
+            document.getElementById('candidate-no').value = "";
+            showPage(2);
+        }
+
+        // ฟังก์ชันประมวลผลการกดโหวต
+        function submitVote() {
+            const voter = document.getElementById('voter-no').value.trim();
+            const candidate = document.getElementById('candidate-no').value.trim();
+
+            if (!voter || !candidate) {
+                alert("❌ กรุณากรอกเลขที่ให้ครบทั้ง 2 ช่องครับ");
+                return;
+            }
+            if (voter === candidate) {
+                alert("⚠️ ไม่สามารถโหวตให้เลขที่ตัวเองได้นะครับนักเรียน");
+                return;
+            }
+
+            // เช็คว่าเคยโหวตไปหรือยังในห้องนี้
+            if (mockDatabase[currentRoom][voter]) {
+                alert(`❌ เลขที่ ${voter} เคยลงคะแนนไปแล้ว ไม่สามารถโหวตซ้ำได้ครับ`);
+                renderLeaderboard();
+                showPage(3);
+                return;
+            }
+
+            // บันทึกคะแนนลงในฐานข้อมูลจำลอง
+            mockDatabase[currentRoom][voter] = parseInt(candidate);
+            
+            alert(`🎉 บันทึกสำเร็จ! เลขที่ ${voter} ได้โหวตให้เลขที่ ${candidate} เรียบร้อยแล้ว`);
+            
+            // พาส่งไปหน้าสรุปผลลัพธ์
+            renderLeaderboard();
+            showPage(3);
+        }
+
+        // ฟังก์ชันคำนวณและวาดกราฟ Leaderboard
+        function renderLeaderboard() {
+            document.getElementById('result-room').innerText = currentRoom;
+            const roomData = mockDatabase[currentRoom];
+            
+            // 1. นับคะแนนโหวตของแต่ละเลขที่
+            let scoreCount = {};
+            Object.values(roomData).forEach(candidate => {
+                scoreCount[candidate] = (scoreCount[candidate] || 0) + 1;
+            });
+
+            // 2. แปลงเป็น Array แล้วเรียงลำดับจากคะแนนมากไปน้อย
+            let sortedScores = Object.keys(scoreCount).map(key => {
+                return { candidateNo: key, votes: scoreCount[key] };
+            }).sort((a, b) => b.votes - a.votes);
+
+            // 3. แสดงผลในหน้าเว็บ
+            const container = document.getElementById('leaderboard-container');
+            container.innerHTML = ""; // เคลียร์ค่าเก่าก่อน
+
+            if (sortedScores.length === 0) {
+                container.innerHTML = `<p class="text-center text-slate-400 text-sm py-8">📥 ยังไม่มีการลงคะแนนในห้องนี้</p>`;
+                return;
+            }
+
+            // หาคะแนนสูงสุดเพื่อเอาไปคำนวณเปอร์เซ็นต์ความยาวของกราฟแท่ง
+            const maxVotes = sortedScores[0].votes;
+
+            sortedScores.forEach((item, index) => {
+                // คำนวณความกว้างขั้นต่ำ 10% สูงสุด 100% ของกราฟ
+                const barWidth = (item.votes / maxVotes) * 100;
+                
+                // กำหนดไอคอนเหรียญรางวัลให้ 3 อันดับแรก
+                let medal = "🎖️";
+                let badgeColor = "bg-slate-100 text-slate-700";
+                if(index === 0) { medal = "🥇"; badgeColor = "bg-amber-100 text-amber-800 font-bold"; }
+                if(index === 1) { medal = "🥈"; badgeColor = "bg-slate-200 text-slate-800 font-bold"; }
+                if(index === 2) { medal = "🥉"; badgeColor = "bg-orange-100 text-orange-800 font-bold"; }
+
+                const rowHtml = `
+                    <div class="space-y-1">
+                        <div class="flex justify-between text-xs font-semibold text-slate-600">
+                            <div class="flex items-center gap-1.5">
+                                <span>${medal}</span>
+                                <span>อันดับ ${index + 1} : <strong class="text-slate-800">เลขที่ ${item.candidateNo}</strong></span>
+                            </div>
+                            <span class="text-blue-600 font-bold">${item.votes} โหวต</span>
+                        </div>
+                        <div class="w-full bg-slate-100 h-6 rounded-lg overflow-hidden">
+                            <div class="bg-gradient-to-r from-blue-500 to-indigo-500 h-full rounded-lg transition-all duration-500" style="width: ${barWidth}%"></div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += rowHtml;
+            });
+        }
+    </script>
+</body>
+</html>
