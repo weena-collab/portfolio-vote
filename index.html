@@ -16,7 +16,7 @@
         
         <div class="bg-amber-500 text-white text-center py-2.5 px-4 text-xs font-bold flex justify-between items-center shadow-inner">
             <span>สำหรับผู้ดูแลระบบ:</span>
-            <button onclick="showPage(6)" class="bg-white text-amber-700 px-3 py-1 rounded-lg font-bold hover:bg-amber-50 transition-all shadow-sm flex items-center gap-1 animate-pulse">
+            <button onclick="openAdminModal()" class="bg-white text-amber-700 px-3 py-1 rounded-lg font-bold hover:bg-amber-50 transition-all shadow-sm flex items-center gap-1 animate-pulse">
                 🔑 เข้าหน้า Admin (ครูวีณา)
             </button>
         </div>
@@ -99,57 +99,4 @@
 
                 <div id="all-results-container" class="space-y-4 max-h-[320px] overflow-y-auto pr-1 text-sm text-slate-700"></div>
 
-                <div class="pt-2 border-t border-slate-100">
-                    <button onclick="goToPage1()" class="w-full py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl text-xs transition-all text-center">
-                        ↩️ กลับหน้าหลัก
-                    </button>
-                </div>
-            </div>
-
-            <div id="page-5" class="hidden space-y-4">
-                <div class="text-center">
-                    <h3 class="text-lg font-bold text-slate-800">🏆 สรุปคะแนนโหวตสูงสุด เรียงตามห้อง</h3>
-                    <p class="text-xs text-slate-400 mt-0.5">อันดับคะแนนของนักเรียนแต่ละห้องเรียน</p>
-                </div>
-
-                <div id="room-summary-container" class="space-y-4 max-h-[320px] overflow-y-auto pr-1 text-sm text-slate-700"></div>
-
-                <div class="pt-2 border-t border-slate-100">
-                    <button onclick="goToPage1()" class="w-full py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl text-xs transition-all text-center">
-                        ↩️ กลับหน้าหลัก
-                    </button>
-                </div>
-            </div>
-
-            <div id="page-6" class="hidden space-y-4">
-                <div class="text-center">
-                    <h3 class="text-lg font-bold text-slate-800">🔒 เข้าสู่ระบบผู้ดูแลระบบ</h3>
-                    <p class="text-xs text-slate-400 mt-0.5">ข้อมูลเข้าใช้งานเฉพาะคุณครูวีณาเท่านั้น</p>
-                </div>
-
-                <div class="space-y-3 pt-2">
-                    <div>
-                        <label class="block text-slate-600 text-xs font-semibold mb-1">ชื่อผู้ใช้งาน (Username)</label>
-                        <input type="text" id="admin-user" placeholder="ระบุชื่อผู้ใช้งาน" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:bg-white focus:outline-none text-sm">
-                    </div>
-                    <div>
-                        <label class="block text-slate-600 text-xs font-semibold mb-1">รหัสผ่าน (Password)</label>
-                        <input type="password" id="admin-pass" placeholder="ระบุรหัสผ่าน" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:bg-white focus:outline-none text-sm">
-                    </div>
-                </div>
-
-                <div class="pt-2 space-y-2">
-                    <button onclick="handleAdminLogin()" class="w-full py-3 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl text-sm transition-all shadow-md">
-                        เข้าสู่ระบบ 🔑
-                    </button>
-                    <button onclick="goToPage1()" class="w-full py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl text-sm transition-all text-center">
-                        ยกเลิก
-                    </button>
-                </div>
-            </div>
-
-            <div id="page-7" class="hidden space-y-5">
-                <div class="text-center bg-indigo-50 border border-indigo-100 rounded-2xl p-4">
-                    <h3 class="text-base font-bold text-indigo-800">⚙️ แผงควบคุมสำหรับคุณครูวีณา</h3>
-                    <p class="text-xs text-indigo-600 mt-0.5">สถานะสิทธิ์การเข้าถึง: ผู้ดูแลระบบสูงสุด</p>
-                </div>
+                <div class="pt-2 border-t border-slate-1
