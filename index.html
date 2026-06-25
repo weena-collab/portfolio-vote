@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ระบบโหวตปก Portfolio ม.6 - ครูวีณา</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght=300;400;600;700&display=swap" rel="stylesheet">
+    
     <style>
         body { font-family: 'Sarabun', sans-serif; }
+        /* 🚨 ฝังคำสั่งซ่อนหน้าจอตรงนี้ ป้องกันระบบพังเวลาเน็ตบล็อก Tailwind */
+        .hidden { display: none !important; }
     </style>
 </head>
 <body class="bg-slate-50 min-h-screen flex items-center justify-center p-4">
@@ -15,8 +18,8 @@
     <div class="max-w-md w-full bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
         
         <div class="bg-amber-500 text-white text-center py-2.5 px-4 text-xs font-bold flex justify-between items-center shadow-inner">
-            <span>สำหรับผู้ดูแลระบบ:</span>
-            <button onclick="openAdminModal()" class="bg-white text-amber-700 px-3 py-1 rounded-lg font-bold hover:bg-amber-50 transition-all shadow-sm flex items-center gap-1 animate-pulse">
+            <span>for Admin Only:</span>
+            <button onclick="openAdminModal()" class="bg-white text-amber-700 px-3 py-1 rounded-lg font-bold hover:bg-amber-50 transition-all shadow-sm flex items-center gap-1">
                 🔑 เข้าหน้า Admin (ครูวีณา)
             </button>
         </div>
@@ -68,7 +71,7 @@
                     <input type="number" id="candidate-no" min="1" max="50" placeholder="ระบุเลขที่ของเพื่อน เช่น 21" class="w-full p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none transition-all text-sm">
                 </div>
 
-                <button onclick="submitVote()" class="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-100 active:scale-[0.99]">
+                <button onclick="submitVote()" class="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-100">
                     ส่งผลโหวต & ดูคะแนนสรุป 🚀
                 </button>
             </div>
@@ -142,10 +145,10 @@
                 <div class="border border-red-100 bg-red-50/50 rounded-2xl p-4 space-y-3">
                     <div class="space-y-1">
                         <h4 class="text-xs font-bold text-red-700 flex items-center gap-1">🚨 Danger Zone</h4>
-                        <p class="text-[11px] text-red-500">* การกดปุ่มด้านล่างจะทำการลบประวัติการโหวตทั้งหมดของทุกห้องเรียนออกจากระบบ และไม่สามารถกู้คืนได้</p>
+                        <p class="text-[11px] text-red-500">* การกดปุ่มด้านล่างจะทำการลบประวัติการโหวตทั้งหมดออกจากระบบ และไม่สามารถกู้คืนได้</p>
                     </div>
                     
-                    <button onclick="clearAllVotes()" class="w-full py-3.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl text-sm transition-all shadow-md shadow-red-100 active:scale-[0.99] flex items-center justify-center gap-1">
+                    <button onclick="clearAllVotes()" class="w-full py-3.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl text-sm transition-all shadow-md">
                         🗑️ ล้างข้อมูลการโหวตทั้งหมด (Reset ระบบ)
                     </button>
                 </div>
@@ -171,11 +174,11 @@
             <div class="space-y-3 pt-2">
                 <div>
                     <label class="block text-slate-600 text-xs font-semibold mb-1">ชื่อผู้ใช้งาน (Username)</label>
-                    <input type="text" id="admin-user" placeholder="ระบุชื่อผู้ใช้งาน" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:bg-white focus:outline-none text-sm">
+                    <input type="text" id="admin-user" placeholder="ระบุชื่อผู้ใช้งาน" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 text-sm">
                 </div>
                 <div>
                     <label class="block text-slate-600 text-xs font-semibold mb-1">รหัสผ่าน (Password)</label>
-                    <input type="password" id="admin-pass" placeholder="ระบุรหัสผ่าน" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:bg-white focus:outline-none text-sm">
+                    <input type="password" id="admin-pass" placeholder="ระบุรหัสผ่าน" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 text-sm">
                 </div>
             </div>
 
@@ -193,7 +196,7 @@
     <script>
         let currentRoom = "";
         
-        // ค่าตั้งต้นข้อมูลตัวอย่างสำหรับการทดสอบครั้งแรก
+        // ข้อมูลตัวอย่างเริ่มต้น
         const defaultDatabase = {
             "12": { "1": 15, "2": 21, "3": 15, "4": 3, "7": 15, "8": 21, "9": 42 },
             "13": { "1": 5, "2": 5, "3": 12 },
@@ -201,14 +204,12 @@
             "15": {}, "16": {}, "17": {}, "18": {}
         };
 
-        // โหลดข้อมูลจาก LocalStorage
         let mockDatabase = JSON.parse(localStorage.getItem('portfolio_votes')) || defaultDatabase;
 
         function saveDatabase() {
             localStorage.setItem('portfolio_votes', JSON.stringify(mockDatabase));
         }
 
-        // ฟังก์ชันเปิด-ปิด Popup Login หลังบ้าน
         function openAdminModal() {
             document.getElementById('admin-modal').classList.remove('hidden');
         }
@@ -219,7 +220,6 @@
             document.getElementById('admin-pass').value = "";
         }
 
-        // ฟังก์ชันสลับหน้าจอหลักภายในแอป
         function showPage(pageNumber) {
             const pages = [1, 2, 3, 4, 5, 7];
             pages.forEach(i => {
@@ -247,7 +247,6 @@
             showPage(2);
         }
 
-        // หน้าสรุปรายละเอียดการโหวตทั้งหมด (Page 4)
         function goToAllResultsPage() {
             const container = document.getElementById('all-results-container');
             container.innerHTML = ""; 
@@ -261,7 +260,7 @@
                 if (votersList.length > 0) {
                     hasAnyData = true;
                     let roomSection = document.createElement('div');
-                    roomSection.className = "bg-slate-50 p-3 rounded-xl border border-slate-100 space-y-1.5";
+                    roomSection.className = "bg-slate-50 p-3 rounded-xl border border-slate-100 space-y-1.5 mb-3";
                     roomSection.innerHTML = `<h4 class="font-bold text-blue-600 border-b border-slate-200 pb-1">🏫 ห้อง ม.6/${roomKey}</h4>`;
                     
                     votersList.forEach(voter => {
@@ -269,7 +268,7 @@
                         roomSection.innerHTML += `
                             <div class="flex justify-between items-center text-xs py-0.5">
                                 <span class="text-slate-600">👤 เลขที่ <strong>${voter}</strong></span>
-                                <span class="text-slate-400">➡️ โหวตให้ ➡️</span>
+                                <span class="text-slate-400">➡️ โหวตให้</span>
                                 <span class="text-indigo-600 font-semibold">⭐ เลขที่ <strong>${candidate}</strong></span>
                             </div>
                         `;
@@ -284,7 +283,6 @@
             showPage(4);
         }
 
-        // หน้าสรุปคะแนนสูงสุดแต่ละห้อง (Page 5)
         function goToSummaryPage() {
             const container = document.getElementById('room-summary-container');
             container.innerHTML = ""; 
@@ -303,7 +301,7 @@
                 }).sort((a, b) => b.votes - a.votes);
 
                 let roomSection = document.createElement('div');
-                roomSection.className = "bg-slate-50 p-3 rounded-xl border border-slate-100 space-y-2";
+                roomSection.className = "bg-slate-50 p-3 rounded-xl border border-slate-100 space-y-2 mb-3";
                 
                 let htmlContent = `
                     <div class="flex justify-between items-center border-b border-slate-200 pb-1.5">
@@ -323,7 +321,7 @@
 
                         htmlContent += `
                             <div class="flex justify-between items-center text-xs py-0.5">
-                                <span class="text-slate-700">${medal} อันดับ ${index + 1}: <strong class="text-slate-900">เลขที่ ${item.candidateNo}</strong></span>
+                                <span class="text-slate-700">${medal} อันดับ ${index + 1}: <strong>เลขที่ ${item.candidateNo}</strong></span>
                                 <span class="font-bold text-amber-700 bg-amber-100/80 px-2 py-0.5 rounded-full text-[11px]">${item.votes} โหวต</span>
                             </div>
                         `;
@@ -335,14 +333,13 @@
             showPage(5);
         }
 
-        // ตรวจสอบข้อมูลล็อกอิน Admin
         function handleAdminLogin() {
             const user = document.getElementById('admin-user').value.trim();
             const pass = document.getElementById('admin-pass').value.trim();
 
             if (user === "admin" && pass === "weena123") {
-                closeAdminModal(); // ปิด popup ล็อกอิน
-                showPage(7);       // เปิดหน้าจัดการ Dashboard ของแอดมิน
+                closeAdminModal();
+                showPage(7);
             } else {
                 alert("❌ ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้องครับคุณครู ลองใหม่อีกครั้งนะครับ");
             }
@@ -356,23 +353,19 @@
             document.getElementById('admin-total-votes').innerText = total + " คน";
         }
 
-        // ฟังก์ชันล้างข้อมูลทั้งหมด
         function clearAllVotes() {
-            const firstConfirm = confirm("⚠️ คุณครูวีณาแน่ใจใช่ไหมครับว่าต้องการ 'ล้างข้อมูลการโหวตทั้งหมด'? ข้อมูลเก่าของเด็กๆ จะหายเกลี้ยงเลยนะครับ");
-            if (firstConfirm) {
-                const secondConfirm = confirm("🚨 ยืนยันอีกครั้งขั้นสุดท้าย! ระบบจะรีเซ็ตคะแนนของทุกห้องเรียนเป็น 0 ทันที");
-                if (secondConfirm) {
+            if (confirm("⚠️ คุณครูวีณาแน่ใจใช่ไหมครับว่าต้องการ 'ล้างข้อมูลการโหวตทั้งหมด'?")) {
+                if (confirm("🚨 ยืนยันอีกครั้งขั้นสุดท้าย! คะแนนของทุกห้องเรียนจะเป็น 0 ทันที")) {
                     mockDatabase = {
                         "12": {}, "13": {}, "14": {}, "15": {}, "16": {}, "17": {}, "18": {}
                     };
                     saveDatabase(); 
-                    alert("✨ รีเซ็ตระบบสำเร็จ! คะแนนโหวตทุกห้องถูกล้างเรียบร้อยแล้วครับคุณครู");
+                    alert("✨ รีเซ็ตระบบสำเร็จแล้วครับคุณครู");
                     goToPage1(); 
                 }
             }
         }
 
-        // ประมวลผลการกดโหวต
         function submitVote() {
             const voter = document.getElementById('voter-no').value.trim();
             const candidate = document.getElementById('candidate-no').value.trim();
@@ -401,7 +394,6 @@
             showPage(3);
         }
 
-        // วาดกราฟผลคะแนนรายห้อง
         function renderLeaderboard() {
             document.getElementById('result-room').innerText = currentRoom;
             const roomData = mockDatabase[currentRoom];
@@ -433,7 +425,7 @@
                 if(index === 2) medal = "🥉";
 
                 const rowHtml = `
-                    <div class="space-y-1">
+                    <div class="space-y-1 mb-2">
                         <div class="flex justify-between text-xs font-semibold text-slate-600">
                             <div class="flex items-center gap-1.5">
                                 <span>${medal}</span>
@@ -442,13 +434,16 @@
                             <span class="text-blue-600 font-bold">${item.votes} โหวต</span>
                         </div>
                         <div class="w-full bg-slate-100 h-6 rounded-lg overflow-hidden">
-                            <div class="bg-gradient-to-r from-blue-500 to-indigo-500 h-full rounded-lg transition-all duration-500" style="width: ${barWidth}%"></div>
+                            <div class="bg-gradient-to-r from-blue-500 to-indigo-500 h-full rounded-lg" style="width: ${barWidth}%"></div>
                         </div>
                     </div>
                 `;
                 container.innerHTML += rowHtml;
             });
         }
+
+        // 🛠️ [จุดที่เพิ่มเข้ามา]: สั่งให้ระบบเปิดแสดงหน้าแรกทันทีที่รันสคริปต์เสร็จ
+        goToPage1();
     </script>
 </body>
 </html>
