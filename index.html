@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ระบบโหวตปก Portfolio ม.6 - ครูวีณา</title>
-    <!-- ใช้ Tailwind CSS สำหรับหน้าตาที่สวยงามและรองรับมือถือ -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -15,7 +14,6 @@
 
     <div class="max-w-md w-full bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
         
-        <!-- แถบสีหัวข้อด้านบน -->
         <div class="bg-gradient-to-r from-blue-600 to-indigo-600 p-6 text-white text-center">
             <span class="bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Activity</span>
             <h1 class="text-2xl font-bold mt-2">🗳️ โหวตปก Portfolio ม.6</h1>
@@ -24,7 +22,6 @@
 
         <div class="p-6">
             
-            <!-- ================= หน้าที่ 1: เลือกห้องเรียน ================= -->
             <div id="page-1" class="space-y-4">
                 <label class="block text-slate-700 font-semibold text-center text-base mb-2">กรุณาเลือกห้องเรียนของคุณเพื่อโหวต</label>
                 <div class="grid grid-cols-2 gap-3">
@@ -37,7 +34,6 @@
                     <button onclick="goToPage2('18')" class="p-4 bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-600 font-bold rounded-2xl border border-slate-200 hover:border-blue-300 transition-all col-span-2 text-center">ม.6/18</button>
                 </div>
                 
-                <!-- ปุ่มดูผลโหวตต่างๆ ที่หน้าแรก -->
                 <div class="pt-2 space-y-2">
                     <button onclick="goToSummaryPage()" class="w-full py-3.5 bg-amber-50 hover:bg-amber-100 text-amber-700 font-bold rounded-2xl border border-amber-200 transition-all text-center text-sm flex items-center justify-center gap-2 shadow-sm">
                         🏆 ดูสรุปคะแนนสูงสุด เรียงตามห้อง
@@ -46,9 +42,12 @@
                         📋 ดูประวัติการโหวตละเอียด (ใครโหวตใครบ้าง)
                     </button>
                 </div>
+
+                <div class="text-center pt-4 border-t border-slate-100">
+                    <button onclick="showPage(6)" class="text-xs text-slate-400 hover:text-slate-600 font-medium transition-colors">🔒 สำหรับผู้ดูแลระบบ (Admin)</button>
+                </div>
             </div>
 
-            <!-- ================= หน้าที่ 2: ฟอร์มกรอกเลขที่โหวต ================= -->
             <div id="page-2" class="hidden space-y-5">
                 <div class="flex justify-between items-center bg-blue-50/70 px-4 py-3 rounded-2xl border border-blue-100">
                     <span class="text-blue-700 font-bold text-sm">📍 กำลังโหวตให้ห้อง: ม.6/<span id="selected-room"></span></span>
@@ -71,14 +70,12 @@
                 </button>
             </div>
 
-            <!-- ================= หน้าที่ 3: สรุปผลคะแนนสรุปเรียลไทม์รายห้อง ================= -->
             <div id="page-3" class="hidden space-y-5">
                 <div class="text-center">
                     <h3 class="text-lg font-bold text-slate-800">📊 ผลโหวตปัจจุบัน ม.6/<span id="result-room"></span></h3>
                     <p class="text-xs text-slate-400 mt-0.5">คะแนนอัปเดตเรียลไทม์จากระบบ</p>
                 </div>
 
-                <!-- พื้นที่แสดงกราฟแท่งผลคะแนน -->
                 <div id="leaderboard-container" class="space-y-3 max-h-[280px] overflow-y-auto pr-1"></div>
 
                 <div class="pt-2 border-t border-slate-100 flex gap-2">
@@ -91,14 +88,12 @@
                 </div>
             </div>
 
-            <!-- ================= หน้าที่ 4: แสดงผลโหวตรวมทุกห้องอย่างละเอียด ================= -->
             <div id="page-4" class="hidden space-y-4">
                 <div class="text-center">
                     <h3 class="text-lg font-bold text-slate-800">📋 ประวัติการโหวตละเอียด ทุกห้อง</h3>
                     <p class="text-xs text-slate-400 mt-0.5">แสดงข้อมูลโปร่งใสว่าใครโหวตให้ใครบ้าง</p>
                 </div>
 
-                <!-- พื้นที่แสดงลิสต์รายชื่อว่าใครโหวตใคร -->
                 <div id="all-results-container" class="space-y-4 max-h-[320px] overflow-y-auto pr-1 text-sm text-slate-700"></div>
 
                 <div class="pt-2 border-t border-slate-100">
@@ -108,14 +103,12 @@
                 </div>
             </div>
 
-            <!-- ================= หน้าที่ 5: (เพิ่มใหม่) สรุปผลคะแนนสูงสุดเรียงตามห้อง ================= -->
             <div id="page-5" class="hidden space-y-4">
                 <div class="text-center">
                     <h3 class="text-lg font-bold text-slate-800">🏆 สรุปคะแนนโหวตสูงสุด เรียงตามห้อง</h3>
                     <p class="text-xs text-slate-400 mt-0.5">อันดับคะแนนของนักเรียนแต่ละห้องเรียน</p>
                 </div>
 
-                <!-- พื้นที่แสดงสรุปอันดับแต่ละห้อง -->
                 <div id="room-summary-container" class="space-y-4 max-h-[320px] overflow-y-auto pr-1 text-sm text-slate-700"></div>
 
                 <div class="pt-2 border-t border-slate-100">
@@ -125,32 +118,108 @@
                 </div>
             </div>
 
+            <div id="page-6" class="hidden space-y-4">
+                <div class="text-center">
+                    <h3 class="text-lg font-bold text-slate-800">🔒 เข้าสู่ระบบผู้ดูแลระบบ</h3>
+                    <p class="text-xs text-slate-400 mt-0.5">เฉพาะคุณครูวีณาเพื่อจัดการระบบโหวตเท่านั้น</p>
+                </div>
+
+                <div class="space-y-3 pt-2">
+                    <div>
+                        <label class="block text-slate-600 text-xs font-semibold mb-1">ชื่อผู้ใช้งาน (Username)</label>
+                        <input type="text" id="admin-user" placeholder="ระบุชื่อผู้ใช้งาน" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-slate-600 text-xs font-semibold mb-1">รหัสผ่าน (Password)</label>
+                        <input type="password" id="admin-pass" placeholder="ระบุรหัสผ่าน" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none text-sm">
+                    </div>
+                </div>
+
+                <div class="pt-2 space-y-2">
+                    <button onclick="handleAdminLogin()" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-sm transition-all shadow-md">
+                        เข้าสู่ระบบ 🔑
+                    </button>
+                    <button onclick="goToPage1()" class="w-full py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl text-sm transition-all text-center">
+                        ยกเลิก
+                    </button>
+                </div>
+            </div>
+
+            <div id="page-7" class="hidden space-y-5">
+                <div class="text-center bg-indigo-50 border border-indigo-100 rounded-2xl p-4">
+                    <h3 class="text-base font-bold text-indigo-800">⚙️ แผงควบคุมสำหรับคุณครูวีณา</h3>
+                    <p class="text-xs text-indigo-600 mt-0.5">สถานะสิทธิ์การเข้าถึง: ผู้ดูแลระบบสูงสุด</p>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-100 rounded-2xl p-4 space-y-2">
+                    <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider">ภาพรวมระบบ</h4>
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="text-slate-600">จำนวนห้องที่เปิดรับโหวต:</span>
+                        <span class="font-bold text-slate-800">7 ห้อง (ม.6/12 - 18)</span>
+                    </div>
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="text-slate-600">จำนวนนักเรียนที่ลงคะแนนแล้ว:</span>
+                        <span id="admin-total-votes" class="font-bold text-blue-600">0 คน</span>
+                    </div>
+                </div>
+
+                <div class="border border-red-100 bg-red-50/50 rounded-2xl p-4 space-y-3">
+                    <div class="space-y-1">
+                        <h4 class="text-xs font-bold text-red-700 flex items-center gap-1">🚨 Danger Zone</h4>
+                        <p class="text-[11px] text-red-500">* การกดปุ่มด้านล่างจะทำการลบประวัติการโหวตทั้งหมดของทุกห้องเรียนออกจากระบบ และไม่สามารถกู้คืนได้</p>
+                    </div>
+                    
+                    <button onclick="clearAllVotes()" class="w-full py-3.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl text-sm transition-all shadow-md shadow-red-100 active:scale-[0.99] flex items-center justify-center gap-1">
+                        🗑️ ล้างข้อมูลการโหวตทั้งหมด (Reset ระบบ)
+                    </button>
+                </div>
+
+                <div class="pt-2 border-t border-slate-100">
+                    <button onclick="goToPage1()" class="w-full py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl text-xs transition-all text-center">
+                        ↩️ ออกจากระบบ & กลับหน้าหลัก
+                    </button>
+                </div>
+            </div>
+
         </div>
     </div>
 
-    <!-- ส่วนควบคุมระบบทำงาน (Logic) -->
     <script>
         let currentRoom = "";
         
-        // จำลองฐานข้อมูลเก็บคะแนนไว้ในเครื่อง (โครงสร้างข้อมูล: { ห้อง: { เลขที่ผู้โหวต: เลขที่ผู้ถูกโหวต } })
-        let mockDatabase = {
+        // ค่าตั้งต้นข้อมูลตัวอย่างสำหรับการทดสอบครั้งแรก
+        const defaultDatabase = {
             "12": { "1": 15, "2": 21, "3": 15, "4": 3, "7": 15, "8": 21, "9": 42 },
             "13": { "1": 5, "2": 5, "3": 12 },
             "14": { "5": 10 }, 
             "15": {}, "16": {}, "17": {}, "18": {}
         };
 
+        // โหลดข้อมูลจาก LocalStorage (ถ้าไม่มีให้ใช้ค่าตั้งต้น defaultDatabase)
+        let mockDatabase = JSON.parse(localStorage.getItem('portfolio_votes')) || defaultDatabase;
+
+        // ฟังก์ชันช่วยบันทึกข้อมูลลงบราวเซอร์
+        function saveDatabase() {
+            localStorage.setItem('portfolio_votes', JSON.stringify(mockDatabase));
+        }
+
         // ฟังก์ชันสลับหน้าจอ
         function showPage(pageNumber) {
-            document.getElementById('page-1').classList.add('hidden');
-            document.getElementById('page-2').classList.add('hidden');
-            document.getElementById('page-3').classList.add('hidden');
-            document.getElementById('page-4').classList.add('hidden');
-            document.getElementById('page-5').classList.add('hidden');
+            for (let i = 1; i <= 7; i++) {
+                document.getElementById(`page-${i}`).classList.add('hidden');
+            }
             document.getElementById(`page-${pageNumber}`).classList.remove('hidden');
+
+            // อัปเดตตัวเลขในหน้า Admin ถ้าย้ายมาหน้า 7
+            if (pageNumber === 7) {
+                updateAdminStats();
+            }
         }
 
         function goToPage1() {
+            // เคลียร์ค่าในช่องล็อกอินเผื่อกรณีออกจากระบบ
+            document.getElementById('admin-user').value = "";
+            document.getElementById('admin-pass').value = "";
             showPage(1);
         }
 
@@ -165,7 +234,7 @@
         // หน้าต่างแสดงรายละเอียดผลรวมทั้งหมดว่าใครโหวตใครบ้าง (Page 4)
         function goToAllResultsPage() {
             const container = document.getElementById('all-results-container');
-            container.innerHTML = ""; // เคลียร์ข้อมูลเก่า
+            container.innerHTML = ""; 
 
             let hasAnyData = false;
 
@@ -203,22 +272,20 @@
             showPage(4);
         }
 
-        // ฟังก์ชันคำนวณและแสดงผลสรุปคะแนนโหวตเรียงตามห้อง (Page 5 - เพิ่มใหม่)
+        // ฟังก์ชันคำนวณและแสดงผลสรุปคะแนนโหวตเรียงตามห้อง (Page 5)
         function goToSummaryPage() {
             const container = document.getElementById('room-summary-container');
-            container.innerHTML = ""; // เคลียร์ข้อมูลเก่า
+            container.innerHTML = ""; 
 
             for (let room = 12; room <= 18; room++) {
                 const roomKey = room.toString();
                 const roomData = mockDatabase[roomKey];
                 
-                // ประมวลผลนับคะแนนโหวตของห้องนั้นๆ
                 let scoreCount = {};
                 Object.values(roomData).forEach(candidate => {
                     scoreCount[candidate] = (scoreCount[candidate] || 0) + 1;
                 });
 
-                // แปลงเป็น Array แล้วเรียงลำดับคะแนนจากมากไปน้อย
                 let sortedScores = Object.keys(scoreCount).map(key => {
                     return { candidateNo: key, votes: scoreCount[key] };
                 }).sort((a, b) => b.votes - a.votes);
@@ -236,7 +303,6 @@
                 if (sortedScores.length === 0) {
                     htmlContent += `<p class="text-xs text-slate-400 italic py-1">📥 ยังไม่มีการลงคะแนนในห้องนี้</p>`;
                 } else {
-                    // ดึงอันดับมาแสดงผลพร้อมติดเหรียญรางวัล
                     sortedScores.forEach((item, index) => {
                         let medal = "🎖️";
                         if(index === 0) medal = "🥇";
@@ -257,6 +323,46 @@
             }
 
             showPage(5);
+        }
+
+        // ฟังก์ชันตรวจสอบล็อกอิน Admin (Page 6)
+        function handleAdminLogin() {
+            const user = document.getElementById('admin-user').value.trim();
+            const pass = document.getElementById('admin-pass').value.trim();
+
+            // ตรวจสอบข้อมูลล็อกอิน (คุณครูวีณาสามารถเปลี่ยน Username / Password ตรงนี้ได้ครับ)
+            if (user === "admin" && pass === "weena123") {
+                showPage(7);
+            } else {
+                alert("❌ ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้องครับคุณครู ลองใหม่อีกครั้งนะครับ");
+            }
+        }
+
+        // ฟังก์ชันคำนวณจำนวนคนโหวตทั้งหมดเพื่อรายงานในหน้าแอดมิน
+        function updateAdminStats() {
+            let total = 0;
+            for (let room = 12; room <= 18; room++) {
+                total += Object.keys(mockDatabase[room.toString()]).length;
+            }
+            document.getElementById('admin-total-votes').innerText = total + " คน";
+        }
+
+        // ฟังก์ชันล้างข้อมูลระบบโหวตทั้งหมด (Page 7)
+        function clearAllVotes() {
+            const firstConfirm = confirm("⚠️ คุณครูวีณาแน่ใจใช่ไหมครับว่าต้องการ 'ล้างข้อมูลการโหวตทั้งหมด'? ข้อมูลเก่าของเด็กๆ จะหายเกลี้ยงเลยนะครับ");
+            if (firstConfirm) {
+                const secondConfirm = confirm("🚨 ยืนยันอีกครั้งขั้นสุดท้าย! ระบบจะรีเซ็ตคะแนนของทุกห้องเรียนเป็น 0 ทันที");
+                if (secondConfirm) {
+                    // ทำการเคลียร์ข้อมูลทุกห้องให้เป็น Object ว่างเปล่า
+                    mockDatabase = {
+                        "12": {}, "13": {}, "14": {}, "15": {}, "16": {}, "17": {}, "18": {}
+                    };
+                    saveDatabase(); // บันทึกลง LocalStorage ให้ข้อมูลหายไปจริงๆ
+                    
+                    alert("✨ รีเซ็ตระบบสำเร็จ! คะแนนโหวตทุกห้องถูกล้างเรียบร้อยแล้วครับคุณครู");
+                    goToPage1(); // เด้งกลับหน้าแรก
+                }
+            }
         }
 
         // ฟังก์ชันประมวลผลการกดโหวต (Page 2)
@@ -281,8 +387,9 @@
                 return;
             }
 
-            // บันทึกคะแนนลงในฐานข้อมูลจำลอง
+            // บันทึกคะแนนลงในตัวแปรและ LocalStorage
             mockDatabase[currentRoom][voter] = parseInt(candidate);
+            saveDatabase();
             
             alert(`🎉 บันทึกสำเร็จ! เลขที่ ${voter} ได้โหวตให้เลขที่ ${candidate} เรียบร้อยแล้ว`);
             
