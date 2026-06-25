@@ -14,12 +14,14 @@
 
     <div class="max-w-md w-full bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
         
-        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 p-6 text-white text-center relative">
-            
-            <button onclick="showPage(6)" class="absolute top-5 right-5 bg-white/20 hover:bg-white/30 text-white w-8 h-8 rounded-full flex items-center justify-center transition-all text-sm shadow-sm" title="เข้าสู่ระบบผู้ดูแลระบบ">
-                ⚙️
+        <div class="bg-amber-500 text-white text-center py-2.5 px-4 text-xs font-bold flex justify-between items-center shadow-inner">
+            <span>สำหรับผู้ดูแลระบบ:</span>
+            <button onclick="showPage(6)" class="bg-white text-amber-700 px-3 py-1 rounded-lg font-bold hover:bg-amber-50 transition-all shadow-sm flex items-center gap-1 animate-pulse">
+                🔑 เข้าหน้า Admin (ครูวีณา)
             </button>
-
+        </div>
+        
+        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 p-6 text-white text-center">
             <span class="bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Activity</span>
             <h1 class="text-2xl font-bold mt-2">🗳️ โหวตปก Portfolio ม.6</h1>
             <p class="text-blue-100 text-xs mt-1">ห้อง ม.6/12 - ม.6/18 | คุณครูวีณา</p>
@@ -49,8 +51,8 @@
                 </div>
 
                 <div class="pt-4 border-t border-slate-100">
-                    <button onclick="showPage(6)" class="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-800 font-semibold rounded-xl text-xs transition-all text-center flex items-center justify-center gap-1.5 border border-slate-200">
-                        🔒 เข้าสู่ระบบผู้ดูแลระบบ (Admin)
+                    <button onclick="showPage(6)" class="w-full py-3 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded-xl text-xs transition-all text-center flex items-center justify-center gap-2 border border-slate-700 shadow-md">
+                        🔒 เข้าสู่ระบบจัดการหลังบ้าน (Admin Menu)
                     </button>
                 </div>
             </div>
@@ -128,22 +130,27 @@
             <div id="page-6" class="hidden space-y-4">
                 <div class="text-center">
                     <h3 class="text-lg font-bold text-slate-800">🔒 เข้าสู่ระบบผู้ดูแลระบบ</h3>
-                    <p class="text-xs text-slate-400 mt-0.5">เฉพาะคุณครูวีณาเพื่อจัดการระบบโหวตเท่านั้น</p>
+                    <p class="text-xs text-slate-400 mt-0.5">ข้อมูลเข้าใช้งานสำหรับคุณครูวีณา</p>
                 </div>
 
                 <div class="space-y-3 pt-2">
+                    <div class="bg-blue-50 border border-blue-200 p-3 rounded-xl text-xs text-blue-700 mb-2">
+                        💡 <strong>ข้อมูลทดสอบเข้าใช้งาน:</strong><br>
+                        • Username: <strong class="underline">admin</strong><br>
+                        • Password: <strong class="underline">weena123</strong>
+                    </div>
                     <div>
                         <label class="block text-slate-600 text-xs font-semibold mb-1">ชื่อผู้ใช้งาน (Username)</label>
-                        <input type="text" id="admin-user" placeholder="ระบุชื่อผู้ใช้งาน (admin)" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none text-sm">
+                        <input type="text" id="admin-user" placeholder="ระบุชื่อผู้ใช้งาน" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:bg-white focus:outline-none text-sm">
                     </div>
                     <div>
                         <label class="block text-slate-600 text-xs font-semibold mb-1">รหัสผ่าน (Password)</label>
-                        <input type="password" id="admin-pass" placeholder="ระบุรหัสผ่าน (weena123)" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none text-sm">
+                        <input type="password" id="admin-pass" placeholder="ระบุรหัสผ่าน" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:bg-white focus:outline-none text-sm">
                     </div>
                 </div>
 
                 <div class="pt-2 space-y-2">
-                    <button onclick="handleAdminLogin()" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-sm transition-all shadow-md">
+                    <button onclick="handleAdminLogin()" class="w-full py-3 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl text-sm transition-all shadow-md">
                         เข้าสู่ระบบ 🔑
                     </button>
                     <button onclick="goToPage1()" class="w-full py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl text-sm transition-all text-center">
@@ -155,4 +162,299 @@
             <div id="page-7" class="hidden space-y-5">
                 <div class="text-center bg-indigo-50 border border-indigo-100 rounded-2xl p-4">
                     <h3 class="text-base font-bold text-indigo-800">⚙️ แผงควบคุมสำหรับคุณครูวีณา</h3>
-                    <p class="text-xs text-indigo-600 mt-
+                    <p class="text-xs text-indigo-600 mt-0.5">สถานะสิทธิ์การเข้าถึง: ผู้ดูแลระบบสูงสุด</p>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-100 rounded-2xl p-4 space-y-2">
+                    <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider">ภาพรวมระบบ</h4>
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="text-slate-600">จำนวนห้องที่เปิดรับโหวต:</span>
+                        <span class="font-bold text-slate-800">7 ห้อง (ม.6/12 - 18)</span>
+                    </div>
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="text-slate-600">จำนวนนักเรียนที่ลงคะแนนแล้ว:</span>
+                        <span id="admin-total-votes" class="font-bold text-blue-600">0 คน</span>
+                    </div>
+                </div>
+
+                <div class="border border-red-100 bg-red-50/50 rounded-2xl p-4 space-y-3">
+                    <div class="space-y-1">
+                        <h4 class="text-xs font-bold text-red-700 flex items-center gap-1">🚨 Danger Zone</h4>
+                        <p class="text-[11px] text-red-500">* การกดปุ่มด้านล่างจะทำการลบประวัติการโหวตทั้งหมดของทุกห้องเรียนออกจากระบบ และไม่สามารถกู้คืนได้</p>
+                    </div>
+                    
+                    <button onclick="clearAllVotes()" class="w-full py-3.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl text-sm transition-all shadow-md shadow-red-100 active:scale-[0.99] flex items-center justify-center gap-1">
+                        🗑️ ล้างข้อมูลการโหวตทั้งหมด (Reset ระบบ)
+                    </button>
+                </div>
+
+                <div class="pt-2 border-t border-slate-100">
+                    <button onclick="goToPage1()" class="w-full py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl text-xs transition-all text-center">
+                        ↩️ ออกจากระบบ & กลับหน้าหลัก
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let currentRoom = "";
+        
+        // ค่าตั้งต้นข้อมูลตัวอย่างสำหรับการทดสอบครั้งแรก
+        const defaultDatabase = {
+            "12": { "1": 15, "2": 21, "3": 15, "4": 3, "7": 15, "8": 21, "9": 42 },
+            "13": { "1": 5, "2": 5, "3": 12 },
+            "14": { "5": 10 }, 
+            "15": {}, "16": {}, "17": {}, "18": {}
+        };
+
+        // โหลดข้อมูลจาก LocalStorage (ถ้าไม่มีให้ใช้ค่าตั้งต้น defaultDatabase)
+        let mockDatabase = JSON.parse(localStorage.getItem('portfolio_votes')) || defaultDatabase;
+
+        // ฟังก์ชันช่วยบันทึกข้อมูลลงบราวเซอร์
+        function saveDatabase() {
+            localStorage.setItem('portfolio_votes', JSON.stringify(mockDatabase));
+        }
+
+        // ฟังก์ชันสลับหน้าจอ
+        function showPage(pageNumber) {
+            for (let i = 1; i <= 7; i++) {
+                document.getElementById(`page-${i}`).classList.add('hidden');
+            }
+            document.getElementById(`page-${pageNumber}`).classList.remove('hidden');
+
+            // อัปเดตตัวเลขในหน้า Admin ถ้าย้ายมาหน้า 7
+            if (pageNumber === 7) {
+                updateAdminStats();
+            }
+        }
+
+        function goToPage1() {
+            document.getElementById('admin-user').value = "";
+            document.getElementById('admin-pass').value = "";
+            showPage(1);
+        }
+
+        function goToPage2(room) {
+            currentRoom = room;
+            document.getElementById('selected-room').innerText = room;
+            document.getElementById('voter-no').value = "";
+            document.getElementById('candidate-no').value = "";
+            showPage(2);
+        }
+
+        // หน้าต่างแสดงรายละเอียดผลรวมทั้งหมดว่าใครโหวตใครบ้าง (Page 4)
+        function goToAllResultsPage() {
+            const container = document.getElementById('all-results-container');
+            container.innerHTML = ""; 
+
+            let hasAnyData = false;
+
+            for (let room = 12; room <= 18; room++) {
+                const roomKey = room.toString();
+                const votersData = mockDatabase[roomKey];
+                const votersList = Object.keys(votersData);
+
+                if (votersList.length > 0) {
+                    hasAnyData = true;
+                    
+                    let roomSection = document.createElement('div');
+                    roomSection.className = "bg-slate-50 p-3 rounded-xl border border-slate-100 space-y-1.5";
+                    roomSection.innerHTML = `<h4 class="font-bold text-blue-600 border-b border-slate-200 pb-1">🏫 ห้อง ม.6/${roomKey}</h4>`;
+                    
+                    votersList.forEach(voter => {
+                        const candidate = votersData[voter];
+                        roomSection.innerHTML += `
+                            <div class="flex justify-between items-center text-xs py-0.5">
+                                <span class="text-slate-600">👤 เลขที่ <strong>${voter}</strong></span>
+                                <span class="text-slate-400">➡️ โหวตให้ ➡️</span>
+                                <span class="text-indigo-600 font-semibold">⭐ เลขที่ <strong>${candidate}</strong></span>
+                            </div>
+                        `;
+                    });
+                    
+                    container.appendChild(roomSection);
+                }
+            }
+
+            if (!hasAnyData) {
+                container.innerHTML = `<p class="text-center text-slate-400 text-sm py-8">📥 ยังไม่มีข้อมูลการโหวตจากห้องใดๆ เลย</p>`;
+            }
+
+            showPage(4);
+        }
+
+        // ฟังก์ชันคำนวณและแสดงผลสรุปคะแนนโหวตเรียงตามห้อง (Page 5)
+        function goToSummaryPage() {
+            const container = document.getElementById('room-summary-container');
+            container.innerHTML = ""; 
+
+            for (let room = 12; room <= 18; room++) {
+                const roomKey = room.toString();
+                const roomData = mockDatabase[roomKey];
+                
+                let scoreCount = {};
+                Object.values(roomData).forEach(candidate => {
+                    scoreCount[candidate] = (scoreCount[candidate] || 0) + 1;
+                });
+
+                let sortedScores = Object.keys(scoreCount).map(key => {
+                    return { candidateNo: key, votes: scoreCount[key] };
+                }).sort((a, b) => b.votes - a.votes);
+
+                let roomSection = document.createElement('div');
+                roomSection.className = "bg-slate-50 p-3 rounded-xl border border-slate-100 space-y-2";
+                
+                let htmlContent = `
+                    <div class="flex justify-between items-center border-b border-slate-200 pb-1.5">
+                        <h4 class="font-bold text-amber-600">🏫 ห้อง ม.6/${roomKey}</h4>
+                        <span class="text-[11px] bg-slate-200/70 text-slate-600 px-2 py-0.5 rounded-md">โหวตแล้ว ${Object.keys(roomData).length} คน</span>
+                    </div>
+                `;
+
+                if (sortedScores.length === 0) {
+                    htmlContent += `<p class="text-xs text-slate-400 italic py-1">📥 ยังไม่มีการลงคะแนนในห้องนี้</p>`;
+                } else {
+                    sortedScores.forEach((item, index) => {
+                        let medal = "🎖️";
+                        if(index === 0) medal = "🥇";
+                        if(index === 1) medal = "🥈";
+                        if(index === 2) medal = "🥉";
+
+                        htmlContent += `
+                            <div class="flex justify-between items-center text-xs py-0.5">
+                                <span class="text-slate-700">${medal} อันดับ ${index + 1}: <strong class="text-slate-900">เลขที่ ${item.candidateNo}</strong></span>
+                                <span class="font-bold text-amber-700 bg-amber-100/80 px-2 py-0.5 rounded-full text-[11px]">${item.votes} โหวต</span>
+                            </div>
+                        `;
+                    });
+                }
+
+                roomSection.innerHTML = htmlContent;
+                container.appendChild(roomSection);
+            }
+
+            showPage(5);
+        }
+
+        // ฟังก์ชันตรวจสอบล็อกอิน Admin (Page 6)
+        function handleAdminLogin() {
+            const user = document.getElementById('admin-user').value.trim();
+            const pass = document.getElementById('admin-pass').value.trim();
+
+            if (user === "admin" && pass === "weena123") {
+                showPage(7);
+            } else {
+                alert("❌ ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้องครับคุณครู ลองใหม่อีกครั้งนะครับ");
+            }
+        }
+
+        // ฟังก์ชันคำนวณจำนวนคนโหวตทั้งหมดเพื่อรายงานในหน้าแอดมิน
+        function updateAdminStats() {
+            let total = 0;
+            for (let room = 12; room <= 18; room++) {
+                total += Object.keys(mockDatabase[room.toString()]).length;
+            }
+            document.getElementById('admin-total-votes').innerText = total + " คน";
+        }
+
+        // ฟังก์ชันล้างข้อมูลระบบโหวตทั้งหมด (Page 7)
+        function clearAllVotes() {
+            const firstConfirm = confirm("⚠️ คุณครูวีณาแน่ใจใช่ไหมครับว่าต้องการ 'ล้างข้อมูลการโหวตทั้งหมด'? ข้อมูลเก่าของเด็กๆ จะหายเกลี้ยงเลยนะครับ");
+            if (firstConfirm) {
+                const secondConfirm = confirm("🚨 ยืนยันอีกครั้งขั้นสุดท้าย! ระบบจะรีเซ็ตคะแนนของทุกห้องเรียนเป็น 0 ทันที");
+                if (secondConfirm) {
+                    mockDatabase = {
+                        "12": {}, "13": {}, "14": {}, "15": {}, "16": {}, "17": {}, "18": {}
+                    };
+                    saveDatabase(); 
+                    
+                    alert("✨ รีเซ็ตระบบสำเร็จ! คะแนนโหวตทุกห้องถูกล้างเรียบร้อยแล้วครับคุณครู");
+                    goToPage1(); 
+                }
+            }
+        }
+
+        // ฟังก์ชันประมวลผลการกดโหวต (Page 2)
+        function submitVote() {
+            const voter = document.getElementById('voter-no').value.trim();
+            const candidate = document.getElementById('candidate-no').value.trim();
+
+            if (!voter || !candidate) {
+                alert("❌ กรุณากรอกเลขที่ให้ครบทั้ง 2 ช่องครับ");
+                return;
+            }
+            if (voter === candidate) {
+                alert("⚠️ ไม่สามารถโหวตให้เลขที่ตัวเองได้นะครับนักเรียน");
+                return;
+            }
+
+            if (mockDatabase[currentRoom][voter]) {
+                alert(`❌ เลขที่ ${voter} เคยลงคะแนนไปแล้ว ไม่สามารถโหวตซ้ำได้ครับ`);
+                renderLeaderboard();
+                showPage(3);
+                return;
+            }
+
+            mockDatabase[currentRoom][voter] = parseInt(candidate);
+            saveDatabase();
+            
+            alert(`🎉 บันทึกสำเร็จ! เลขที่ ${voter} ได้โหวตให้เลขที่ ${candidate} เรียบร้อยแล้ว`);
+            
+            renderLeaderboard();
+            showPage(3);
+        }
+
+        // ฟังก์ชันคำนวณและวาดกราฟ Leaderboard รายห้อง (Page 3)
+        function renderLeaderboard() {
+            document.getElementById('result-room').innerText = currentRoom;
+            const roomData = mockDatabase[currentRoom];
+            
+            let scoreCount = {};
+            Object.values(roomData).forEach(candidate => {
+                scoreCount[candidate] = (scoreCount[candidate] || 0) + 1;
+            });
+
+            let sortedScores = Object.keys(scoreCount).map(key => {
+                return { candidateNo: key, votes: scoreCount[key] };
+            }).sort((a, b) => b.votes - a.votes);
+
+            const container = document.getElementById('leaderboard-container');
+            container.innerHTML = "";
+
+            if (sortedScores.length === 0) {
+                container.innerHTML = `<p class="text-center text-slate-400 text-sm py-8">📥 ยังไม่มีการลงคะแนนในห้องนี้</p>`;
+                return;
+            }
+
+            const maxVotes = sortedScores[0].votes;
+
+            sortedScores.forEach((item, index) => {
+                const barWidth = (item.votes / maxVotes) * 100;
+                
+                let medal = "🎖️";
+                if(index === 0) medal = "🥇";
+                if(index === 1) medal = "🥈";
+                if(index === 2) medal = "🥉";
+
+                const rowHtml = `
+                    <div class="space-y-1">
+                        <div class="flex justify-between text-xs font-semibold text-slate-600">
+                            <div class="flex items-center gap-1.5">
+                                <span>${medal}</span>
+                                <span>อันดับ ${index + 1} : <strong class="text-slate-800">เลขที่ ${item.candidateNo}</strong></span>
+                            </div>
+                            <span class="text-blue-600 font-bold">${item.votes} โหวต</span>
+                        </div>
+                        <div class="w-full bg-slate-100 h-6 rounded-lg overflow-hidden">
+                            <div class="bg-gradient-to-r from-blue-500 to-indigo-500 h-full rounded-lg transition-all duration-500" style="width: ${barWidth}%"></div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += rowHtml;
+            });
+        }
+    </script>
+</body>
+</html>
